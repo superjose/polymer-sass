@@ -21,7 +21,7 @@ This assumes that you have your files inside an "app" folder. This can be modifi
 Note that the most important thing is that the styles scss file has the same name as the .html file
 
 If you have an element called "hero-tournament":
-```javascript
+```html
 <dom-module id="hero-tournament">
   <template>
     <style>    </style>
