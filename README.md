@@ -5,7 +5,7 @@ This shows you how to integrate your sass files with Polymer's custom element. T
 ## Code Example
 
 This assumes that you have your files inside an "app" folder. This can be modified inside the gulpfile. 
-```javascript
+```
  gulpfile.js
  /app
      /whatever
@@ -89,7 +89,7 @@ Now, any changes that you make to your .scss files will be injected to your -sty
 We need to reference your hero-tournament-styles.html file into hero-tournament.html! 
 This is done through these lines of code:
 ```html
-<link rel="import" href"hero-tournament-styles.html">
+<link rel="import" href="hero-tournament-styles.html">
 <style include="shared-styles"></style>
 ```
 Which in the example element, would be placed like this:
