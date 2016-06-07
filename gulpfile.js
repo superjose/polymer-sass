@@ -7,6 +7,15 @@ var basePath = "app/";
 var excludeDir = basePath+"bower_components/";
 var ext = "**/*.html";
 
+/**
+ * We need to specify to nodeSass the include paths for Sass' @import
+ * command. These are all the paths that it will look for it. 
+ * 
+ * Failing to specify this, will NOT Compile your scss and inject it to 
+ * your .html file.
+ * 
+ */
+var includePaths = ['app/elements/**/'];
 
 gulp.task('watchSass', function(){
   gulp.watch(['app/**/*.scss', '!app/bower_components/**/*.scss'], ["injectSass"]);  
@@ -84,7 +93,7 @@ gulp.task('injectSass', function () {
                     }
                     nodeSass.render({
                             data: data.toString(),
-                            includePaths: [path.join('app', 'style/')],
+                            includePaths: [path.join('app', 'style/'), ...includePaths],
                             outputStyle: 'compressed'
                         }, function (err, compiledScss) {
 
