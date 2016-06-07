@@ -4,7 +4,7 @@ This shows you how to integrate your sass files with Polymer's custom element. T
 
 ## Code Example
 
-This assumes that you have your files inside an "app" folder. This can be modified inside the gulpfile. 
+This assumes that you have your files inside an "app" folder. This can be modified inside the gulpfile. They can be in any subfolder as well. Including Element's subfolder.
 ```
  gulpfile.js
  /app
@@ -84,6 +84,49 @@ Now, any changes that you make to your .scss files will be injected to your -sty
 </dom-module>
 ```
 
+**SASS Imports**
+It is very important to know that we need to specify the includePaths for nodeSass so it can look for
+any Sass imports. Failing to do so, our application will fail to compile and inject. 
+
+```js
+//Original includePaths variable inside gulpfile.js:
+var includePaths = ['app/elements/**/'];
+```
+
+The variable includePaths contains an Array, in which you can pass as many directories as you want to include. 
+
+The "app/styles" directory is hardcoded into nodeSass' includePaths. You can delete this if you don't need it.
+
+In English, this means the following: 
+
+If you have an element structure like this:
+
+```
+-gulpfile.js
+ /app
+     /elements
+               /hero-tournament
+                    -hero-tournament.html
+                    -hero-tournament-styles.html
+                    -hero-tournament-styles.scss
+     /dir2
+              -_base_2.scss
+     /styles
+              -_base_1.scss
+``` 
+
+If you try to import _base_2.scss **it will not work**. If you don't specify into the includePaths variable, something like this:
+
+```js
+var includePaths = ['app/dir2/**/'];
+```
+
+If you are super lazy, you could do something like this:
+
+```js
+var includePaths = ['app/**/'];
+```
+That'll search for everything inside the app folder. 
 
 **One Last Thing**
 We need to reference your hero-tournament-styles.html file into hero-tournament.html! 
