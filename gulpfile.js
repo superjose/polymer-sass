@@ -119,7 +119,7 @@ gulp.task('injectSass', function () {
 
                                 //This is going to replace everything that was between the <!-- Start Style --> and
                                 // "<!-- End Style -->"
-                                file.contents = new Buffer(contents.replace(regEx, injectSassContent), 'binary');
+                                file.contents = new Buffer(contents.replace(regEx, injectSassContent), 'utf8');
                                 //This return is necessary, or the modified map will not be modified!
                                 return cb(null,file);
                      });
